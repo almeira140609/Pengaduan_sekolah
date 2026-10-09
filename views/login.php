@@ -1,0 +1,362 @@
+<?php
+
+session_start();
+
+
+// =========================
+// JIKA SUDAH LOGIN
+// =========================
+
+if (isset($_SESSION['role'])) {
+
+    if ($_SESSION['role'] == 'admin') {
+        header("Location: dashboard_admin.php");
+        exit;
+    }
+
+    if ($_SESSION['role'] == 'siswa') {
+        header("Location: dashboard_siswa.php");
+        exit;
+    }
+
+}
+
+?>
+
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login - Pengaduan Sekolah</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+
+            min-height: 100vh;
+
+            background: #f5f3ff;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+        }
+
+
+        .login-container {
+            width: 100%;
+
+            max-width: 420px;
+
+            padding: 20px;
+        }
+
+
+        .login-card {
+            background: white;
+
+            border-radius: 14px;
+
+            padding: 35px;
+
+            border: 1px solid #e7eaf0;
+
+            box-shadow: 0 10px 30px rgba(31,41,55,0.08);
+        }
+
+
+        .logo {
+            text-align: center;
+
+            margin-bottom: 30px;
+        }
+
+
+        .logo-icon {
+            width: 60px;
+
+            height: 60px;
+
+            margin: 0 auto 15px;
+
+            border-radius: 14px;
+
+            background: #7567d9;
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 28px;
+
+            font-weight: bold;
+        }
+
+
+        .logo h1 {
+            font-size: 23px;
+
+            color: #20283a;
+        }
+
+
+        .logo p {
+            margin-top: 7px;
+
+            font-size: 13px;
+
+            color: #8992a2;
+        }
+
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+
+        .form-group label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            color: #303b4e;
+        }
+
+
+        .form-group input {
+            width: 100%;
+
+            padding: 13px 14px;
+
+            border: 1px solid #dfe3eb;
+
+            border-radius: 8px;
+
+            outline: none;
+
+            font-size: 13px;
+
+            color: #303b4e;
+        }
+
+
+        .form-group input:focus {
+            border-color: #7567d9;
+
+            box-shadow: 0 0 0 3px rgba(117,103,217,0.10);
+        }
+
+
+        .btn-login {
+            width: 100%;
+
+            padding: 13px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #7567d9;
+
+            color: white;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+
+        .btn-login:hover {
+            background: #6254c5;
+        }
+
+
+        .error {
+            margin-bottom: 18px;
+
+            padding: 11px 13px;
+
+            border-radius: 8px;
+
+            background: #ffe5e5;
+
+            color: #b42318;
+
+            font-size: 12px;
+
+            text-align: center;
+        }
+
+
+        .footer {
+            margin-top: 22px;
+
+            text-align: center;
+
+            font-size: 11px;
+
+            color: #9aa3b2;
+        }
+
+        .success {
+    margin-bottom: 18px;
+
+    padding: 11px 13px;
+
+    border-radius: 8px;
+
+    background: #d9f5e5;
+
+    color: #18733c;
+
+    font-size: 12px;
+
+    text-align: center;
+}
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="login-container">
+
+
+    <div class="login-card">
+
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                PS
+            </div>
+
+            <h1>
+                Pengaduan Sekolah
+            </h1>
+
+            <p>
+                Sistem Sarana & Prasarana
+            </p>
+
+        </div>
+
+
+        <?php if (isset($_GET['error'])) { ?>
+
+            <div class="error">
+
+                Username atau password salah.
+
+            </div>
+
+        <?php } ?>
+
+    
+ <?php if (isset($_GET['logout'])) { ?>
+
+    <div class="success">
+
+        ✓ Kamu berhasil logout.
+
+    </div>
+
+<?php } ?>
+
+        <form
+            action="../controllers/c_login.php"
+            method="POST"
+        >
+
+
+            <div class="form-group">
+
+                <label for="username">
+                    Username
+                </label>
+
+                <input
+                    type="text"
+                    name="username"
+                    id="username"
+                    placeholder="Masukkan username"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="Masukkan password"
+                    required
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="btn-login"
+            >
+                Login
+            </button>
+
+
+        </form>
+
+
+        <div class="footer">
+
+            Pengaduan Sarana & Prasarana Sekolah
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+</body>
+
+</html>

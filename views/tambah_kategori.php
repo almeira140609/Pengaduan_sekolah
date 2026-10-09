@@ -1,0 +1,738 @@
+<?php
+require_once "../models/m_kategori.php";
+?>
+
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tambah Kategori - Pengaduan Sekolah</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f3f5f9;
+            color: #263238;
+        }
+
+        /* =========================
+           SIDEBAR
+        ========================= */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+
+            width: 240px;
+            height: 100vh;
+
+            background: #20283a;
+            color: white;
+
+            display: flex;
+            flex-direction: column;
+
+            box-shadow: 3px 0 15px rgba(0,0,0,0.08);
+        }
+
+        .logo {
+            padding: 27px 24px;
+
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .logo h2 {
+            font-size: 21px;
+            line-height: 1.2;
+        }
+
+        .logo p {
+            margin-top: 6px;
+
+            font-size: 12px;
+
+            color: #aeb8ca;
+        }
+
+        /* =========================
+           MENU
+        ========================= */
+
+        .menu {
+            padding: 22px 12px;
+        }
+
+        .menu-title {
+            padding: 0 13px;
+
+            margin-bottom: 10px;
+
+            font-size: 11px;
+
+            color: #8994a8;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+        }
+
+        .menu a {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 12px 14px;
+
+            margin-bottom: 5px;
+
+            color: #dbe1eb;
+
+            text-decoration: none;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+
+            transition: 0.2s;
+        }
+
+        .menu a:hover {
+            background: #2b354b;
+
+            color: white;
+        }
+
+        .menu a.active {
+            background: #7567d9;
+
+            color: white;
+
+            box-shadow: 0 5px 12px rgba(117,103,217,0.25);
+        }
+
+        .icon {
+            width: 22px;
+
+            text-align: center;
+
+            font-size: 16px;
+        }
+
+        /* =========================
+           LOGOUT
+        ========================= */
+
+        .logout {
+            margin-top: auto;
+
+            padding: 15px 12px;
+
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .logout a {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 12px 14px;
+
+            color: #dbe1eb;
+
+            text-decoration: none;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+        }
+
+        .logout a:hover {
+            background: #2b354b;
+        }
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .main-content {
+            margin-left: 240px;
+
+            min-height: 100vh;
+        }
+
+        /* =========================
+           TOPBAR
+        ========================= */
+
+        .topbar {
+            height: 72px;
+
+            background: white;
+
+            border-bottom: 1px solid #e5e8ee;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 32px;
+        }
+
+        .topbar-text {
+            color: #7a8494;
+
+            font-size: 13px;
+        }
+
+        .admin {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+        .admin-avatar {
+            width: 38px;
+            height: 38px;
+
+            border-radius: 50%;
+
+            background: #eeeafd;
+
+            color: #6658c9;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-weight: bold;
+        }
+
+        .admin-name {
+            font-size: 13px;
+
+            font-weight: bold;
+
+            color: #263238;
+        }
+
+        .admin-role {
+            margin-top: 3px;
+
+            font-size: 11px;
+
+            color: #9aa3b2;
+        }
+
+        /* =========================
+           CONTENT
+        ========================= */
+
+        .content {
+            padding: 30px 32px;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .page-header {
+            margin-bottom: 25px;
+        }
+
+        .page-title h1 {
+            font-size: 25px;
+
+            color: #20283a;
+        }
+
+        .page-title p {
+            margin-top: 7px;
+
+            font-size: 13px;
+
+            color: #8992a2;
+        }
+
+        /* =========================
+           FORM CARD
+        ========================= */
+
+        .form-card {
+            background: white;
+
+            border-radius: 12px;
+
+            border: 1px solid #e7eaf0;
+
+            box-shadow: 0 5px 20px rgba(31,41,55,0.05);
+
+            padding: 25px;
+
+            max-width: 700px;
+        }
+
+        .form-header {
+            padding-bottom: 18px;
+
+            margin-bottom: 22px;
+
+            border-bottom: 1px solid #eceff3;
+        }
+
+        .form-header h3 {
+            font-size: 16px;
+
+            color: #303b4e;
+        }
+
+        .form-header p {
+            margin-top: 5px;
+
+            font-size: 12px;
+
+            color: #98a1af;
+        }
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            color: #374151;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+
+            padding: 11px 13px;
+
+            border: 1px solid #dfe3ea;
+
+            border-radius: 7px;
+
+            outline: none;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            font-size: 13px;
+
+            color: #374151;
+
+            transition: 0.2s;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #7567d9;
+
+            box-shadow: 0 0 0 3px rgba(117,103,217,0.10);
+        }
+
+        /* =========================
+           ACTION
+        ========================= */
+
+        .form-action {
+            margin-top: 25px;
+
+            padding-top: 20px;
+
+            border-top: 1px solid #eceff3;
+
+            display: flex;
+
+            gap: 8px;
+        }
+
+        .btn {
+            display: inline-block;
+
+            padding: 10px 15px;
+
+            border-radius: 7px;
+
+            text-decoration: none;
+
+            border: none;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .btn-simpan {
+            background: #7567d9;
+
+            color: white;
+        }
+
+        .btn-simpan:hover {
+            background: #6558c7;
+        }
+
+        .btn-kembali {
+            background: #edf0f4;
+
+            color: #626b78;
+        }
+
+        .btn-kembali:hover {
+            background: #e2e5eb;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            .sidebar {
+                width: 200px;
+            }
+
+            .main-content {
+                margin-left: 200px;
+            }
+
+            .content {
+                padding: 25px 20px;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .sidebar {
+                width: 65px;
+            }
+
+            .logo h2,
+            .logo p,
+            .menu-title,
+            .menu span:not(.icon),
+            .logout span:not(.icon),
+            .topbar-text,
+            .admin-name,
+            .admin-role {
+                display: none;
+            }
+
+            .logo {
+                text-align: center;
+
+                padding: 22px 5px;
+            }
+
+            .menu a,
+            .logout a {
+                justify-content: center;
+            }
+
+            .main-content {
+                margin-left: 65px;
+            }
+
+            .content {
+                padding: 20px 12px;
+            }
+
+            .form-card {
+                padding: 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     SIDEBAR
+========================= -->
+
+<div class="sidebar">
+
+
+    <div class="logo">
+
+        <h2>
+            Pengaduan<br>
+            Sekolah
+        </h2>
+
+        <p>
+            Sistem Sarana & Prasarana
+        </p>
+
+    </div>
+
+
+    <div class="menu">
+
+        <div class="menu-title">
+            Menu Utama
+        </div>
+
+
+        <a href="dashboard_admin.php">
+
+            <span class="icon">⌂</span>
+
+            <span>
+                Dashboard
+            </span>
+
+        </a>
+
+
+        <a href="v_siswa.php">
+
+            <span class="icon">♙</span>
+
+            <span>
+                Data Siswa
+            </span>
+
+        </a>
+
+
+        <a href="v_kategori.php" class="active">
+
+            <span class="icon">▦</span>
+
+            <span>
+                Kategori
+            </span>
+
+        </a>
+
+
+        <a href="v_aspirasi.php">
+
+            <span class="icon">▤</span>
+
+            <span>
+                Aspirasi
+            </span>
+
+
+         <a href="v_histori.php">
+
+            <span class="icon">◷</span>
+
+            <span>
+                Histori
+            </span>
+
+        </a>
+
+    </div>
+
+
+    <div class="logout">
+
+        <a href="logout.php">
+
+            <span class="icon">←</span>
+
+            <span>
+                Logout
+            </span>
+
+        </a>
+
+    </div>
+
+
+</div>
+
+
+<!-- =========================
+     MAIN CONTENT
+========================= -->
+
+<div class="main-content">
+
+
+    <!-- TOPBAR -->
+
+    <div class="topbar">
+
+        <div class="topbar-text">
+            Sistem Pengaduan Sarana & Prasarana Sekolah
+        </div>
+
+
+        <div class="admin">
+
+            <div class="admin-avatar">
+                A
+            </div>
+
+
+            <div>
+
+                <div class="admin-name">
+                    Administrator
+                </div>
+
+                <div class="admin-role">
+                    Admin Sekolah
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- CONTENT -->
+
+    <div class="content">
+
+
+        <!-- HEADER -->
+
+        <div class="page-header">
+
+            <div class="page-title">
+
+                <h1>
+                    Tambah Kategori
+                </h1>
+
+                <p>
+                    Tambahkan kategori baru untuk pengaduan sekolah.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- FORM CARD -->
+
+        <div class="form-card">
+
+
+            <div class="form-header">
+
+                <h3>
+                    Form Kategori
+                </h3>
+
+                <p>
+                    Masukkan informasi kategori yang ingin ditambahkan.
+                </p>
+
+            </div>
+
+
+            <form
+                method="POST"
+                action="../controllers/c_kategori.php"
+            >
+
+
+                <div class="form-group">
+
+                    <label for="nama_kategori">
+                        Nama Kategori
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nama_kategori"
+                        name="nama_kategori"
+                        placeholder="Contoh: Kerusakan Fasilitas"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-action">
+
+                    <a
+                        href="v_kategori.php"
+                        class="btn btn-kembali"
+                    >
+                        Kembali
+                    </a>
+
+
+                    <button
+                        type="submit"
+                        name="tambah"
+                        class="btn btn-simpan"
+                    >
+                        + Simpan Kategori
+                    </button>
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>
