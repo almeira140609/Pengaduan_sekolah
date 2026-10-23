@@ -29,625 +29,16 @@ $nama_admin = $_SESSION['nama_admin'];
 
     <title>Data Siswa - Pengaduan Sekolah</title>
 
-    <style>
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f5f3ff;
-            color: #263238;
-        }
-
-
-        /* =========================
-           SIDEBAR
-        ========================= */
-
-        .sidebar {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 240px;
-            height: 100vh;
-            background: #20283a;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 3px 0 15px rgba(0,0,0,0.08);
-        }
-
-        .logo {
-            padding: 27px 24px;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-        }
-
-        .logo h2 {
-            font-size: 21px;
-            line-height: 1.2;
-        }
-
-        .logo p {
-            margin-top: 6px;
-            font-size: 12px;
-            color: #aeb8ca;
-        }
-
-        .menu {
-            padding: 22px 12px;
-        }
-
-        .menu-title {
-            padding: 0 13px;
-            margin-bottom: 10px;
-            font-size: 11px;
-            color: #8994a8;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .menu a {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 14px;
-            margin-bottom: 5px;
-            color: #dbe1eb;
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 14px;
-            transition: 0.2s;
-        }
-
-        .menu a:hover {
-            background: #2b354b;
-            color: white;
-        }
-
-        .menu a.active {
-            background: #7567d9;
-            color: white;
-            box-shadow: 0 5px 12px rgba(117,103,217,0.25);
-        }
-
-        .icon {
-            width: 22px;
-            text-align: center;
-            font-size: 16px;
-        }
-
-
-        /* =========================
-           LOGOUT
-        ========================= */
-
-        .logout {
-            margin-top: auto;
-            padding: 15px 12px;
-            border-top: 1px solid rgba(255,255,255,0.08);
-        }
-
-        .logout a {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 14px;
-            color: #dbe1eb;
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 14px;
-        }
-
-        .logout a:hover {
-            background: #2b354b;
-        }
-
-
-        /* =========================
-           MAIN CONTENT
-        ========================= */
-
-        .main-content {
-            margin-left: 240px;
-            min-height: 100vh;
-        }
-
-
-        /* =========================
-           TOPBAR
-        ========================= */
-
-        .topbar {
-            height: 72px;
-            background: white;
-            border-bottom: 1px solid #e5e8ee;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 32px;
-        }
-
-        .topbar-text {
-            color: #7a8494;
-            font-size: 13px;
-        }
-
-        .admin-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .admin-avatar {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            background: #eeeafd;
-            color: #6658c9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-
-        .admin-name {
-            font-size: 13px;
-            font-weight: bold;
-            color: #263238;
-        }
-
-        .admin-role {
-            margin-top: 3px;
-            font-size: 11px;
-            color: #9aa3b2;
-        }
-
-
-        /* =========================
-           CONTENT
-        ========================= */
-
-        .content {
-            padding: 30px 32px;
-        }
-
-        .page-title {
-            margin-bottom: 25px;
-        }
-
-        .page-title h1 {
-            font-size: 25px;
-            color: #20283a;
-        }
-
-        .page-title p {
-            margin-top: 7px;
-            font-size: 13px;
-            color: #8992a2;
-        }
-
-
-        /* =========================
-           HEADER SISWA
-        ========================= */
-
-        .page-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-        }
-
-        .btn-tambah {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-
-            padding: 11px 16px;
-
-            background: #7567d9;
-            color: white;
-
-            text-decoration: none;
-
-            border-radius: 8px;
-
-            font-size: 13px;
-            font-weight: bold;
-
-            box-shadow: 0 5px 12px rgba(117,103,217,0.20);
-
-            transition: 0.2s;
-        }
-
-        .btn-tambah:hover {
-            background: #6658c9;
-            transform: translateY(-1px);
-        }
-
-
-        /* =========================
-           ALERT
-        ========================= */
-
-        .alert {
-            padding: 13px 16px;
-            margin-bottom: 20px;
-
-            border-radius: 8px;
-
-            font-size: 13px;
-        }
-
-        .alert.success {
-            background: #e9f8ef;
-            color: #27814d;
-            border: 1px solid #ccebd8;
-        }
-
-
-        /* =========================
-           TABLE CARD
-        ========================= */
-
-        .table-card {
-            background: white;
-            border-radius: 12px;
-
-            box-shadow: 0 3px 15px rgba(32,40,58,0.06);
-
-            overflow: hidden;
-        }
-
-        .table-header {
-            padding: 20px 22px;
-
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            border-bottom: 1px solid #eeeef4;
-        }
-
-        .table-header h2 {
-            font-size: 16px;
-            color: #20283a;
-        }
-
-        .table-header p {
-            margin-top: 5px;
-            font-size: 12px;
-            color: #8992a2;
-        }
-
-
-        /* =========================
-           SEARCH
-        ========================= */
-
-        .search-form {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-        }
-
-        .search-box {
-            height: 38px;
-            width: 220px;
-
-            display: flex;
-            align-items: center;
-
-            padding: 0 11px;
-
-            border: 1px solid #dddfea;
-            border-radius: 8px;
-
-            background: white;
-        }
-
-        .search-box span {
-            font-size: 14px;
-            margin-right: 7px;
-        }
-
-        .search-box input {
-            width: 100%;
-
-            border: none;
-            outline: none;
-
-            font-size: 12px;
-            color: #263238;
-        }
-
-        .search-box input::placeholder {
-            color: #9aa3b2;
-        }
-
-        .btn-search {
-            height: 38px;
-
-            padding: 0 15px;
-
-            border: none;
-            border-radius: 8px;
-
-            background: #7567d9;
-            color: white;
-
-            font-size: 12px;
-            font-weight: bold;
-
-            cursor: pointer;
-        }
-
-        .btn-search:hover {
-            background: #6658c9;
-        }
-
-        .btn-reset {
-            height: 38px;
-
-            display: flex;
-            align-items: center;
-
-            padding: 0 13px;
-
-            border-radius: 8px;
-
-            background: #eeeef4;
-            color: #666b79;
-
-            text-decoration: none;
-
-            font-size: 12px;
-        }
-
-
-        /* =========================
-           TABLE
-        ========================= */
-
-        .table-wrapper {
-            width: 100%;
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        thead {
-            background: #fafaff;
-        }
-
-        th {
-            padding: 14px 18px;
-
-            text-align: left;
-
-            font-size: 11px;
-            font-weight: bold;
-
-            color: #8992a2;
-
-            text-transform: uppercase;
-
-            border-bottom: 1px solid #eeeef4;
-        }
-
-        td {
-            padding: 15px 18px;
-
-            font-size: 13px;
-
-            color: #5f6877;
-
-            border-bottom: 1px solid #f0f0f5;
-        }
-
-        tbody tr:hover {
-            background: #fcfbff;
-        }
-
-        tbody tr:last-child td {
-            border-bottom: none;
-        }
-
-        .nis {
-            color: #6658c9;
-            font-weight: bold;
-        }
-
-        .nama {
-            color: #263238;
-            font-weight: bold;
-        }
-
-
-        /* =========================
-           AKSI
-        ========================= */
-
-        .aksi {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-        }
-
-        .btn-edit,
-        .btn-hapus {
-            width: 34px;
-            height: 34px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            border-radius: 8px;
-
-            text-decoration: none;
-
-            font-size: 14px;
-
-            transition: 0.2s;
-        }
-
-        .btn-edit {
-            background: #eeeafd;
-        }
-
-        .btn-edit:hover {
-            background: #ddd7fa;
-        }
-
-        .btn-hapus {
-            background: #fff0f0;
-        }
-
-        .btn-hapus:hover {
-            background: #ffdede;
-        }
-
-
-        /* =========================
-           EMPTY
-        ========================= */
-
-        .empty {
-            text-align: center;
-            padding: 45px 20px !important;
-            color: #8992a2;
-        }
-
-        .empty-icon {
-            font-size: 32px;
-            margin-bottom: 8px;
-        }
-
-        .empty p {
-            font-size: 13px;
-        }
-
-
-        /* =========================
-           RESPONSIVE
-        ========================= */
-
-        @media (max-width: 1100px) {
-
-            .table-header {
-                align-items: flex-start;
-                gap: 15px;
-            }
-
-        }
-
-
-        @media (max-width: 900px) {
-
-            .sidebar {
-                width: 200px;
-            }
-
-            .main-content {
-                margin-left: 200px;
-            }
-
-            .content {
-                padding: 25px 20px;
-            }
-
-            .table-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-            }
-
-            .search-form {
-                width: 100%;
-            }
-
-            .search-box {
-                flex: 1;
-            }
-
-        }
-
-
-        @media (max-width: 600px) {
-
-            .sidebar {
-                width: 65px;
-            }
-
-            .logo h2,
-            .logo p,
-            .menu-title,
-            .menu span:not(.icon),
-            .logout span:not(.icon),
-            .topbar-text,
-            .admin-name,
-            .admin-role {
-                display: none;
-            }
-
-            .logo {
-                text-align: center;
-                padding: 22px 5px;
-            }
-
-            .menu a,
-            .logout a {
-                justify-content: center;
-            }
-
-            .main-content {
-                margin-left: 65px;
-            }
-
-            .content {
-                padding: 20px 12px;
-            }
-
-            .page-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-            }
-
-            .btn-tambah {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .search-form {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .search-box,
-            .btn-search,
-            .btn-reset {
-                width: 100%;
-            }
-
-        }
-
-    </style>
+    <link rel="stylesheet" href="../assets/v_siswa.css">
 
 </head>
 
 <body>
 
 
-<!-- SIDEBAR -->
+<!-- =========================
+     SIDEBAR
+========================= -->
 
 <div class="sidebar">
 
@@ -745,12 +136,16 @@ $nama_admin = $_SESSION['nama_admin'];
 </div>
 
 
-<!-- MAIN CONTENT -->
+<!-- =========================
+     MAIN CONTENT
+========================= -->
 
 <div class="main-content">
 
 
-    <!-- TOPBAR -->
+    <!-- =========================
+         TOPBAR
+    ========================= -->
 
     <div class="topbar">
 
@@ -782,7 +177,9 @@ $nama_admin = $_SESSION['nama_admin'];
     </div>
 
 
-    <!-- CONTENT -->
+    <!-- =========================
+         CONTENT
+    ========================= -->
 
     <div class="content">
 
@@ -815,9 +212,12 @@ $nama_admin = $_SESSION['nama_admin'];
         </div>
 
 
-        <!-- ALERT -->
+        <!-- =========================
+             ALERT
+        ========================= -->
 
         <?php if (isset($_GET['pesan'])): ?>
+
 
             <?php if ($_GET['pesan'] == 'tambah'): ?>
 
@@ -825,11 +225,13 @@ $nama_admin = $_SESSION['nama_admin'];
                     ✓ Data siswa berhasil ditambahkan.
                 </div>
 
+
             <?php elseif ($_GET['pesan'] == 'edit'): ?>
 
                 <div class="alert success">
                     ✓ Data siswa berhasil diperbarui.
                 </div>
+
 
             <?php elseif ($_GET['pesan'] == 'hapus'): ?>
 
@@ -837,12 +239,21 @@ $nama_admin = $_SESSION['nama_admin'];
                     ✓ Data siswa berhasil dihapus.
                 </div>
 
+
+            <?php elseif ($_GET['pesan'] == 'gagal_hapus'): ?>
+
+                <div class="alert gagal">
+                    ⚠️ Siswa tidak dapat dihapus karena masih memiliki pengaduan.
+                </div>
+
             <?php endif; ?>
 
         <?php endif; ?>
 
 
-        <!-- TABLE CARD -->
+        <!-- =========================
+             TABLE CARD
+        ========================= -->
 
         <div class="table-card">
 
@@ -887,7 +298,10 @@ $nama_admin = $_SESSION['nama_admin'];
 
                     <?php if ($search != ''): ?>
 
-                        <a href="v_siswa.php" class="btn-reset">
+                        <a
+                            href="v_siswa.php"
+                            class="btn-reset"
+                        >
                             Reset
                         </a>
 
@@ -898,7 +312,9 @@ $nama_admin = $_SESSION['nama_admin'];
             </div>
 
 
-            <!-- TABLE -->
+            <!-- =========================
+                 TABLE
+            ========================= -->
 
             <div class="table-wrapper">
 
@@ -939,17 +355,24 @@ $nama_admin = $_SESSION['nama_admin'];
 
                     <tbody>
 
-                        <?php if (!empty($data_siswa)): ?>
+
+                        <?php if (mysqli_num_rows($data_siswa) > 0): ?>
 
                             <?php $no = 1; ?>
 
-                            <?php foreach ($data_siswa as $row): ?>
+
+                            <?php while ($row = mysqli_fetch_assoc($data_siswa)): ?>
 
                                 <tr>
+
+                                    <!-- NO -->
 
                                     <td>
                                         <?= $no++; ?>
                                     </td>
+
+
+                                    <!-- NIS -->
 
                                     <td>
 
@@ -959,6 +382,9 @@ $nama_admin = $_SESSION['nama_admin'];
 
                                     </td>
 
+
+                                    <!-- NAMA -->
+
                                     <td>
 
                                         <div class="nama">
@@ -967,17 +393,29 @@ $nama_admin = $_SESSION['nama_admin'];
 
                                     </td>
 
+
+                                    <!-- KELAS -->
+
                                     <td>
                                         <?= htmlspecialchars($row['kelas']); ?>
                                     </td>
+
+
+                                    <!-- USERNAME -->
 
                                     <td>
                                         <?= htmlspecialchars($row['username']); ?>
                                     </td>
 
+
+                                    <!-- AKSI -->
+
                                     <td>
 
                                         <div class="aksi">
+
+
+                                            <!-- EDIT -->
 
                                             <a
                                                 href="edit_siswa.php?id=<?= $row['id_siswa']; ?>"
@@ -986,6 +424,10 @@ $nama_admin = $_SESSION['nama_admin'];
                                             >
                                                 ✏️
                                             </a>
+
+
+                                            <!-- HAPUS -->
+
                                             <a
                                                 href="../controllers/c_siswa.php?hapus=<?= $row['id_siswa']; ?>"
                                                 class="btn-hapus"
@@ -994,20 +436,27 @@ $nama_admin = $_SESSION['nama_admin'];
                                             >
                                                 🗑️
                                             </a>
+
+
                                         </div>
 
                                     </td>
 
                                 </tr>
 
-                            <?php endforeach; ?>
+
+                            <?php endwhile; ?>
 
 
                         <?php else: ?>
 
+
                             <tr>
 
-                                <td colspan="6" class="empty">
+                                <td
+                                    colspan="6"
+                                    class="empty"
+                                >
 
                                     <div class="empty-icon">
                                         📭
@@ -1021,7 +470,9 @@ $nama_admin = $_SESSION['nama_admin'];
 
                             </tr>
 
+
                         <?php endif; ?>
+
 
                     </tbody>
 
@@ -1034,6 +485,7 @@ $nama_admin = $_SESSION['nama_admin'];
     </div>
 
 </div>
+
 
 </body>
 

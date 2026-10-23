@@ -17,6 +17,7 @@ if (isset($_POST['tambah'])) {
     $username   = $_POST['username'];
     $password   = $_POST['password'];
 
+
     $siswa->tambah(
         $nis,
         $nama_siswa,
@@ -25,7 +26,11 @@ if (isset($_POST['tambah'])) {
         $password
     );
 
-    header("Location: ../views/v_siswa.php?pesan=tambah");
+
+    header(
+        "Location: ../views/v_siswa.php?pesan=tambah"
+    );
+
     exit;
 }
 
@@ -43,6 +48,7 @@ if (isset($_POST['edit'])) {
     $username   = $_POST['username'];
     $password   = $_POST['password'];
 
+
     $siswa->edit(
         $id_siswa,
         $nis,
@@ -52,7 +58,11 @@ if (isset($_POST['edit'])) {
         $password
     );
 
-    header("Location: ../views/v_siswa.php?pesan=edit");
+
+    header(
+        "Location: ../views/v_siswa.php?pesan=edit"
+    );
+
     exit;
 }
 
@@ -65,14 +75,38 @@ if (isset($_GET['hapus'])) {
 
     $id_siswa = $_GET['hapus'];
 
+
+    // Cek apakah siswa memiliki pengaduan
+
+    if ($siswa->punyaAspirasi($id_siswa)) {
+
+        header(
+            "Location: ../views/v_siswa.php?pesan=gagal_hapus"
+        );
+
+        exit;
+    }
+
+
+    // Kalau tidak memiliki pengaduan, lanjut hapus
+
     $hasil = $siswa->hapus($id_siswa);
 
+
     if ($hasil) {
-        header("Location: ../views/v_siswa.php?pesan=hapus");
+
+        header(
+            "Location: ../views/v_siswa.php?pesan=hapus"
+        );
+
     } else {
-        header("Location: ../views/v_siswa.php?pesan=gagal_hapus");
+
+        header(
+            "Location: ../views/v_siswa.php?pesan=gagal_hapus"
+        );
     }
 
     exit;
 }
+
 ?>

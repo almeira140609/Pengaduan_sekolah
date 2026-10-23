@@ -1,17 +1,14 @@
-
-        * {
+* {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-
         body {
             font-family: Arial, Helvetica, sans-serif;
-            background: #f3f5f9;
+            background: #f5f3ff;
             color: #263238;
         }
-
 
         /* =========================
            SIDEBAR
@@ -21,112 +18,73 @@
             position: fixed;
             left: 0;
             top: 0;
-
             width: 240px;
             height: 100vh;
-
             background: #20283a;
             color: white;
-
             display: flex;
             flex-direction: column;
-
-            box-shadow: 3px 0 15px rgba(0,0,0,0.08);
+            box-shadow: 3px 0 15px rgba(0, 0, 0, 0.08);
         }
-
 
         .logo {
             padding: 27px 24px;
-
-            border-bottom: 1px solid rgba(255,255,255,0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
-
 
         .logo h2 {
             font-size: 21px;
             line-height: 1.2;
         }
 
-
         .logo p {
             margin-top: 6px;
-
             font-size: 12px;
-
             color: #aeb8ca;
         }
-
-
-        /* =========================
-           MENU
-        ========================= */
 
         .menu {
             padding: 22px 12px;
         }
 
-
         .menu-title {
             padding: 0 13px;
-
             margin-bottom: 10px;
-
             font-size: 11px;
-
             color: #8994a8;
-
             text-transform: uppercase;
-
             letter-spacing: 1px;
         }
 
-
         .menu a {
             display: flex;
-
             align-items: center;
-
             gap: 12px;
-
             padding: 12px 14px;
-
             margin-bottom: 5px;
-
             color: #dbe1eb;
-
             text-decoration: none;
-
             border-radius: 8px;
-
             font-size: 14px;
-
             transition: 0.2s;
         }
-
 
         .menu a:hover {
             background: #2b354b;
             color: white;
         }
 
-
         .menu a.active {
             background: #7567d9;
-
             color: white;
-
-            box-shadow: 0 5px 12px rgba(117,103,217,0.25);
+            box-shadow: 0 5px 12px rgba(117, 103, 217, 0.25);
         }
-
 
         .icon {
             width: 22px;
-
             text-align: center;
-
             font-size: 16px;
         }
-
 
         /* =========================
            LOGOUT
@@ -134,47 +92,33 @@
 
         .logout {
             margin-top: auto;
-
             padding: 15px 12px;
-
-            border-top: 1px solid rgba(255,255,255,0.08);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
         }
-
 
         .logout a {
             display: flex;
-
             align-items: center;
-
             gap: 12px;
-
             padding: 12px 14px;
-
             color: #dbe1eb;
-
             text-decoration: none;
-
             border-radius: 8px;
-
             font-size: 14px;
         }
-
 
         .logout a:hover {
             background: #2b354b;
         }
 
-
         /* =========================
-           MAIN
+           MAIN CONTENT
         ========================= */
 
         .main-content {
             margin-left: 240px;
-
             min-height: 100vh;
         }
-
 
         /* =========================
            TOPBAR
@@ -182,74 +126,48 @@
 
         .topbar {
             height: 72px;
-
             background: white;
-
             border-bottom: 1px solid #e5e8ee;
-
             display: flex;
-
             align-items: center;
-
             justify-content: space-between;
-
             padding: 0 32px;
         }
 
-
         .topbar-text {
             color: #7a8494;
-
             font-size: 13px;
         }
 
-
-        .admin {
+        .admin-info {
             display: flex;
-
             align-items: center;
-
             gap: 10px;
         }
-
 
         .admin-avatar {
             width: 38px;
             height: 38px;
-
             border-radius: 50%;
-
             background: #eeeafd;
-
             color: #6658c9;
-
             display: flex;
-
             align-items: center;
-
             justify-content: center;
-
             font-weight: bold;
         }
-
 
         .admin-name {
             font-size: 13px;
-
             font-weight: bold;
-
             color: #263238;
         }
 
-
         .admin-role {
             margin-top: 3px;
-
             font-size: 11px;
-
             color: #9aa3b2;
         }
-
 
         /* =========================
            CONTENT
@@ -259,370 +177,279 @@
             padding: 30px 32px;
         }
 
-
-        /* =========================
-           HEADER
-        ========================= */
-
         .page-header {
-            display: flex;
-
-            align-items: center;
-
-            justify-content: space-between;
-
             margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
         }
-
 
         .page-title h1 {
             font-size: 25px;
-
             color: #20283a;
         }
 
-
         .page-title p {
             margin-top: 7px;
-
             font-size: 13px;
-
             color: #8992a2;
         }
 
+        /* =========================
+           NOTIFIKASI
+        ========================= */
+
+        .notifikasi {
+            padding: 13px 16px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        .notifikasi.berhasil {
+            background: #e8f8ee;
+            color: #21864b;
+            border: 1px solid #bce8cb;
+        }
+
+        .notifikasi.gagal {
+            background: #fff0f0;
+            color: #c62828;
+            border: 1px solid #ffcaca;
+        }
 
         /* =========================
            BUTTON TAMBAH
         ========================= */
 
         .btn-tambah {
-            display: inline-block;
-
-            padding: 11px 17px;
-
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 11px 16px;
             background: #7567d9;
-
             color: white;
-
             text-decoration: none;
-
-            border-radius: 7px;
-
+            border-radius: 8px;
             font-size: 13px;
-
             font-weight: bold;
-
+            white-space: nowrap;
+            box-shadow: 0 5px 12px rgba(117, 103, 217, 0.20);
             transition: 0.2s;
         }
 
-
         .btn-tambah:hover {
-            background: #6558c7;
+            background: #6658c9;
+            transform: translateY(-1px);
         }
 
-
         /* =========================
-           CARD
+           TABLE CARD
         ========================= */
 
         .table-card {
             background: white;
-
             border-radius: 12px;
-
-            border: 1px solid #e7eaf0;
-
-            box-shadow: 0 5px 20px rgba(31,41,55,0.05);
-
+            box-shadow: 0 3px 15px rgba(32, 40, 58, 0.06);
             overflow: hidden;
         }
 
-
         .table-header {
             padding: 20px 22px;
-
-            border-bottom: 1px solid #eceff3;
+            border-bottom: 1px solid #eeeef4;
         }
 
+        .table-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
 
-        .table-header h3 {
+        .table-title h3 {
             font-size: 16px;
-
-            color: #303b4e;
+            color: #20283a;
         }
 
-
-        .table-header p {
+        .table-title p {
             margin-top: 5px;
-
             font-size: 12px;
-
-            color: #98a1af;
+            color: #8992a2;
         }
-
 
         /* =========================
            SEARCH
         ========================= */
 
-        .table-title {
-            display: flex;
-
-            align-items: center;
-
-            justify-content: space-between;
-
-            gap: 20px;
-        }
-
-
         .search-form {
             display: flex;
-
             align-items: center;
-
             gap: 7px;
         }
 
-
         .search-form input {
-            width: 260px;
-
-            padding: 10px 12px;
-
-            border: 1px solid #dfe3ea;
-
-            border-radius: 7px;
-
+            width: 220px;
+            height: 38px;
+            padding: 0 12px;
+            border: 1px solid #dddfea;
+            border-radius: 8px;
             outline: none;
-
             font-size: 12px;
+            color: #263238;
         }
-
 
         .search-form input:focus {
             border-color: #7567d9;
-
-            box-shadow: 0 0 0 3px rgba(117,103,217,0.10);
         }
 
+        .search-form input::placeholder {
+            color: #9aa3b2;
+        }
 
         .search-form button {
-            padding: 10px 14px;
-
+            height: 38px;
+            padding: 0 15px;
             border: none;
-
-            border-radius: 7px;
-
+            border-radius: 8px;
             background: #7567d9;
-
             color: white;
-
             font-size: 12px;
-
             font-weight: bold;
-
             cursor: pointer;
         }
 
+        .search-form button:hover {
+            background: #6658c9;
+        }
 
         .btn-reset {
-            padding: 10px 12px;
-
-            border-radius: 7px;
-
-            background: #edf0f4;
-
-            color: #626b78;
-
+            height: 38px;
+            display: flex;
+            align-items: center;
+            padding: 0 13px;
+            border-radius: 8px;
+            background: #eeeef4;
+            color: #666b79;
             text-decoration: none;
-
             font-size: 12px;
         }
 
+        .btn-reset:hover {
+            background: #e3e2e9;
+        }
 
         /* =========================
            TABLE
         ========================= */
 
         .table-wrapper {
+            width: 100%;
             overflow-x: auto;
         }
 
-
         table {
             width: 100%;
-
             border-collapse: collapse;
         }
 
+        thead {
+            background: #fafaff;
+        }
 
-        table th {
+        th {
             padding: 14px 18px;
-
-            background: #fafbfc;
-
-            color: #7b8493;
-
-            font-size: 12px;
-
             text-align: left;
-
-            border-bottom: 1px solid #e7eaf0;
+            font-size: 11px;
+            font-weight: bold;
+            color: #8992a2;
+            text-transform: uppercase;
+            border-bottom: 1px solid #eeeef4;
         }
 
-
-        table td {
-            padding: 16px 18px;
-
+        td {
+            padding: 15px 18px;
             font-size: 13px;
-
-            color: #46515f;
-
-            border-bottom: 1px solid #eef0f3;
+            color: #5f6877;
+            border-bottom: 1px solid #f0f0f5;
         }
 
-
-        table tbody tr:hover {
-            background: #fafbfe;
+        tbody tr:hover {
+            background: #fcfbff;
         }
 
-
-        table tbody tr:last-child td {
+        tbody tr:last-child td {
             border-bottom: none;
         }
-
-
-        /* =========================
-           NOMOR
-        ========================= */
-
-        .nomor {
-            width: 40px;
-
-            color: #98a1af;
-
-            font-weight: bold;
-        }
-
-
-        /* =========================
-           KATEGORI
-        ========================= */
-
-        .kategori-name {
-            font-weight: bold;
-
-            color: #303b4e;
-        }
-
-
-        .kategori-icon {
-            display: inline-flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            width: 34px;
-            height: 34px;
-
-            margin-right: 10px;
-
-            border-radius: 8px;
-
-            background: #eeeafd;
-
-            color: #6658c9;
-
-            vertical-align: middle;
-        }
-
 
         /* =========================
            AKSI
         ========================= */
 
-        .aksi {
-            display: flex;
-
-            gap: 6px;
-        }
-
-
         .btn-edit,
         .btn-hapus {
-            display: inline-block;
-
-            padding: 7px 11px;
-
-            border-radius: 6px;
-
-            color: white;
-
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
             text-decoration: none;
-
-            font-size: 11px;
-
-            font-weight: bold;
+            font-size: 15px;
+            transition: 0.2s;
+            border: none;
+            cursor: pointer;
         }
-
 
         .btn-edit {
-            background: #e7a52b;
+            background: #eeeafd;
         }
-
-
-        .btn-hapus {
-            background: #df5b5b;
-        }
-
 
         .btn-edit:hover {
-            background: #d39218;
+            background: #ddd7fa;
         }
 
+        .btn-hapus {
+            background: #fff0f0;
+        }
 
         .btn-hapus:hover {
-            background: #cc4848;
+            background: #ffdede;
         }
-
 
         /* =========================
-           DATA KOSONG
+           EMPTY DATA
         ========================= */
 
-        .data-kosong {
+        .empty-data {
             text-align: center;
-
-            padding: 45px !important;
-
-            color: #98a1af;
+            padding: 50px 20px !important;
+            color: #8992a2;
         }
 
-
-        .data-kosong-icon {
-            font-size: 30px;
-
+        .empty-icon {
+            font-size: 32px;
             margin-bottom: 10px;
         }
 
-
-        .data-kosong strong {
+        .empty-data strong {
             display: block;
-
-            color: #303b4e;
-
+            font-size: 13px;
+            color: #5f6877;
             margin-bottom: 5px;
         }
 
+        .empty-data p {
+            font-size: 12px;
+        }
 
         /* =========================
            RESPONSIVE
         ========================= */
 
-        @media (max-width: 800px) {
-
+        @media (max-width: 900px) {
             .sidebar {
                 width: 200px;
             }
@@ -636,9 +463,8 @@
             }
 
             .table-title {
-                align-items: flex-start;
-
                 flex-direction: column;
+                align-items: flex-start;
             }
 
             .search-form {
@@ -647,15 +473,12 @@
 
             .search-form input {
                 flex: 1;
-
                 width: auto;
+                min-width: 0;
             }
-
         }
 
-
         @media (max-width: 600px) {
-
             .sidebar {
                 width: 65px;
             }
@@ -673,7 +496,6 @@
 
             .logo {
                 text-align: center;
-
                 padding: 22px 5px;
             }
 
@@ -690,28 +512,28 @@
                 padding: 20px 12px;
             }
 
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .btn-tambah {
+                width: 100%;
+            }
+
+            .search-form {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-form input,
+            .search-form button,
+            .btn-reset {
+                width: 100%;
+            }
+
+            .topbar {
+                padding: 0 15px;
+            }
         }
-
-        .empty-data {
-    text-align: center;
-    padding: 50px 20px !important;
-    color: #6b7280;
-}
-
-.empty-icon {
-    font-size: 40px;
-    margin-bottom: 12px;
-}
-
-.empty-data strong {
-    display: block;
-    color: #374151;
-    font-size: 16px;
-    margin-bottom: 6px;
-}
-
-.empty-data p {
-    margin: 0;
-    font-size: 14px;
-    color: #9ca3af;
-}
